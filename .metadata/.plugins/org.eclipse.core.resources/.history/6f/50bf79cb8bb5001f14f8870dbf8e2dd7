@@ -1,0 +1,14 @@
+package com.example.demo.services.impl;
+
+import com.example.demo.services.UserService;
+import com.example.demo.shared.dto.UserDto;
+
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public UserDto createUser(UserDto userDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
