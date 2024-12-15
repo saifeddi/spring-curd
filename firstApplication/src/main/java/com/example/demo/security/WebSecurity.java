@@ -26,18 +26,23 @@ public class WebSecurity {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
 		AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager);
-        authenticationFilter.setFilterProcessesUrl("/login"); // Specify the login URL
+        authenticationFilter.setFilterProcessesUrl("/users/login"); // Specify the login URL
 
 		http.cors(cors -> cors.disable()) // Disable CORS if not required
 				.csrf(csrf -> csrf.disable()) // Disable CSRF for APIs
 				.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll() // Allow POST
 																											// requests
 																											// to /users
-						.anyRequest().authenticated() // Require authentication for other endpoints
-				).addFilter(authenticationFilter);
+						.anyRequest().authenticated()
+				)
+				.addFilter(authenticationFilter)
+			 	.addFilter(	new AuthorizationFilter(authenticationManager));
+				 
 
 		return http.build();
 	}
+	
+ 
 	
 	@Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {

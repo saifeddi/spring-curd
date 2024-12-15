@@ -5,7 +5,7 @@ public class UserResponse {
 	private String firstName;
 	private String lastName ;
 	private String email ;
-	private String useId;
+	private String userId;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -24,11 +24,11 @@ public class UserResponse {
 	public void setEmail(String password) {
 		this.email = password;
 	}
-	public String getUseId() {
-		return useId;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUseId(String useId) {
-		this.useId = useId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	
